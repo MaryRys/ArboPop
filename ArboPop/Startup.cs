@@ -1,3 +1,4 @@
+using ArboPop.Connections;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -8,6 +9,11 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace ArboPop
 {
+    public class DbConfiguration
+    {
+        public string ConnectionString { get; set; }
+    }
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -21,6 +27,10 @@ namespace ArboPop
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.Configure<DbConfiguration>(Configuration);
+            services.AddTransient<UserRepo>();
+            services.AddTransient<ComplaintsConnections>();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -64,4 +74,5 @@ namespace ArboPop
             });
         }
     }
+
 }
