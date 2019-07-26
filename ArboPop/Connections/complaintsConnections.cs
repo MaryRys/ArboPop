@@ -30,6 +30,22 @@ namespace ArboPop.Connections
             return products;
         }
 
+        public complaint getSingleComplaint(int id)
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                var queryString = @"Select *
+                                    From [Activity]
+                                    Where Id = @Id";
+                var complaint = connection.QueryFirstOrDefault<complaint>(queryString, new { id });
+                if (complaint != null)
+                {
+                    return complaint;
+                }
+                throw new Exception("Can't find the submission you are looking for");
+            }
+        }
+
 
     }
 }

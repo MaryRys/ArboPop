@@ -19,12 +19,23 @@ namespace ArboPop.Controllers
             _connections = connections;
         }
 
+
+        //use endpoint https://localhost:#####/api/all in url
         [HttpGet("all")]
         public ActionResult GetAllComplaints()
         {
             var complaints = _connections.getAllComplaints();
 
             return Ok(complaints);
+        }
+
+        // use endpoint https://localhost:#####/api/{id} in url
+        [HttpGet("{id}")]
+        public ActionResult GetSingleComplaint(int id)
+        {
+            var complaint = _connections.getSingleComplaint(id);
+
+            return Ok(complaint);
         }
     }
 }
