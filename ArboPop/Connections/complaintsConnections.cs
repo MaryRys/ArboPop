@@ -24,8 +24,8 @@ namespace ArboPop.Connections
         public IEnumerable<complaint> getAllComplaints()
         {
             var connection = new SqlConnection(ConnectionString);
-            var queryString = @"Select *
-                                    From [Activity]";
+            var queryString = @"SELECT *
+                                FROM [Activity]";
             var products = connection.Query<complaint>(queryString).ToList();
             return products;
         }
@@ -34,15 +34,27 @@ namespace ArboPop.Connections
         {
             using (var connection = new SqlConnection(ConnectionString))
             {
-                var queryString = @"Select *
-                                    From [Activity]
-                                    Where Id = @Id";
+                var queryString = @"SELECT *
+                                    FROM [Activity]
+                                    WHERE Id = @Id";
                 var complaint = connection.QueryFirstOrDefault<complaint>(queryString, new { id });
                 if (complaint != null)
                 {
                     return complaint;
                 }
                 throw new Exception("Can't find the submission you are looking for");
+            }
+        }
+
+        public IEnumerable<complaint> getAllUserComplaints(int userId)
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                var queryString = @"SELECT *
+                                FROM [Activity]
+                                WHERE userId = @userId";
+                var products = connection.Query<complaint>(queryString, new { userId }).ToList();
+                return products;
             }
         }
 

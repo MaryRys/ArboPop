@@ -12,6 +12,7 @@ namespace ArboPop.Models.Complaints
             public int zipcode { get; set; }
             public string bitingSource { get; set; }
             public string notes { get; set; }
+            public DateTime creationDate { get; set; }
     }
 }
 
