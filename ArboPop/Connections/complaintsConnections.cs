@@ -58,6 +58,21 @@ namespace ArboPop.Connections
             }
         }
 
-
+        public complaint AddNewComplaint(NewComplaint newComplaint)
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                newComplaint.creationDate = DateTime.Now;
+                var queryString = @"INSERT into [Activity](userId, creationDate, timeOfDay, zipcode, bitingSource, addtlNotes)
+                                    Output inserted.*
+                                    Values(@userId, @creationDate, @timeOfDay, @zipcode, @bitingSource, @addtlNotes)";
+                var complaint = connection.QueryFirstOrDefault<complaint>(queryString, newComplaint);
+                if (complaint != null)
+                {
+                    return complaint;
+                }
+                throw new Exception("Error, can't add the submission");
+            }
+        }
     }
 }

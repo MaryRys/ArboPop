@@ -7,6 +7,7 @@ namespace ArboPop.Models.Complaints
 {
     public class complaint
     {
+            public int Id { get; }
             public int userId { get; }
             public string timeOfDay { get; set; }
             public int zipcode { get; set; }

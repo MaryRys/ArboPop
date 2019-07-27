@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ArboPop.Connections;
+using ArboPop.Models.Complaints;
 
 namespace ArboPop.Controllers
 {
@@ -38,13 +39,22 @@ namespace ArboPop.Controllers
             return Ok(complaint);
         }
 
-        // use endpoint https://localhost:#####/api/Complaints/my-responses in url
+        // use endpoint https://localhost:#####/api/Complaints/user/{userId} in url
         [HttpGet("user/{userId}")]
         public ActionResult GetAllUserOrders(int userId)
         {
             var complaints = _connections.getAllUserComplaints(userId);
 
             return Ok(complaints);
+        }
+
+        [HttpPost]
+        public ActionResult AddComplaint(NewComplaint newComplaint)
+        {
+                var createdComplaint = _connections.AddNewComplaint(newComplaint);
+
+            return Accepted(createdComplaint);
+ 
         }
     }
 }
