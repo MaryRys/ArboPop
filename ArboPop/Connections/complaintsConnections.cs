@@ -12,8 +12,6 @@ namespace ArboPop.Connections
 {
     public class ComplaintsConnections
     {
-        //const string _connectionString = "Server=localhost;Database=ArboPop;Trusted_Connection=True;";
-
         readonly string ConnectionString;
 
         public ComplaintsConnections(IOptions<DbConfiguration> dbConfig)
@@ -72,6 +70,23 @@ namespace ArboPop.Connections
                     return complaint;
                 }
                 throw new Exception("Error, can't add the submission");
+            }
+        }
+
+        public complaint DeleteComplaint(int id)
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                var queryString = @"DELETE 
+                                    FROM [Activity]
+                                    Output deleted.*
+                                    WHERE id = @id";
+                var order = connection.QueryFirstOrDefault<complaint>(queryString, new { id });
+                if (order != null)
+                {
+                    return order;
+                }
+                throw new Exception("Unable to delete that submission");
             }
         }
     }
