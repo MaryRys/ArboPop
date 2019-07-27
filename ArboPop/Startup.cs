@@ -31,6 +31,7 @@ namespace ArboPop
             services.Configure<DbConfiguration>(Configuration);
             services.AddTransient<UserRepo>();
             services.AddTransient<ComplaintsConnections>();
+            services.AddTransient<mosquitoConnections>();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
