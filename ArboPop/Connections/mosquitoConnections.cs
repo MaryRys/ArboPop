@@ -27,21 +27,21 @@ namespace ArboPop.Connections
             return mosquito;
         }
 
-        //public complaint getSingleComplaint(int id)
-        //{
-        //    using (var connection = new SqlConnection(ConnectionString))
-        //    {
-        //        var queryString = @"SELECT *
-        //                            FROM [Activity]
-        //                            WHERE Id = @Id";
-        //        var complaint = connection.QueryFirstOrDefault<complaint>(queryString, new { id });
-        //        if (complaint != null)
-        //        {
-        //            return complaint;
-        //        }
-        //        throw new Exception("Can't find the submission you are looking for");
-        //    }
-        //}
+        public Mosquito getSingleMosquito(int id)
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                var queryString = @"SELECT *
+                                    FROM [Species]
+                                    WHERE Id = @Id";
+                var mosquito = connection.QueryFirstOrDefault<Mosquito>(queryString, new { id });
+                if (mosquito != null)
+                {
+                    return mosquito;
+                }
+                throw new Exception("Can't find the species you are looking for");
+            }
+        }
 
         //public IEnumerable<complaint> getAllUserComplaints(int userId)
         //{

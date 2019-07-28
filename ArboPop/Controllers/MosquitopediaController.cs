@@ -20,7 +20,7 @@ namespace ArboPop.Controllers
         }
 
 
-        //use endpoint https://localhost:#####/api/mosquito/all in url
+        //use endpoint https://localhost:#####/api/mosquitopedia/all in url
         [HttpGet("all")]
         public ActionResult GetAllMosquitoes()
         {
@@ -29,14 +29,14 @@ namespace ArboPop.Controllers
             return Ok(species);
         }
 
-        //    // use endpoint https://localhost:#####/api/Complaints/{id} in url
-        //    [HttpGet("{id}")]
-        //    public ActionResult GetSingleComplaint(int id)
-        //    {
-        //        var complaint = _connections.getSingleComplaint(id);
+        // use endpoint https://localhost:#####/api/mosquitopedia/{id} in url
+        [HttpGet("{id}")]
+        public ActionResult GetSingleComplaint(int id)
+        {
+            var mosquito = _connections.getSingleMosquito(id);
 
-        //        return Ok(complaint);
-        //    }
+            return Ok(mosquito);
+        }
 
         //    // use endpoint https://localhost:#####/api/Complaints/user/{userId} in url
         //    [HttpGet("user/{userId}")]
