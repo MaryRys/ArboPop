@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ArboPop.Connections;
+using ArboPop.Models.Sample;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -47,14 +48,14 @@ namespace ArboPop.Controllers
             return Ok(samples);
         }
 
-        //[HttpPost]
-        //public ActionResult AddComplaint(NewComplaint newComplaint)
-        //{
-        //    var createdComplaint = _connections.AddNewComplaint(newComplaint);
+        [HttpPost]
+        public ActionResult AddSample(AddNewSample newSample)
+        {
+            var createdSample = _connections.AddNewSample(newSample);
 
-        //    return Accepted(createdComplaint);
+            return Accepted(createdSample);
 
-        //}
+        }
 
         //// pass id in body
         //[HttpDelete("{id}")]
