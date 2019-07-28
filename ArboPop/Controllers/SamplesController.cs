@@ -58,11 +58,11 @@ namespace ArboPop.Controllers
         }
 
         //// pass id in body
-        //[HttpDelete("{id}")]
-        //public ActionResult DeleteComplaint(int id)
-        //{
-        //    var complaint = _connections.DeleteComplaint(id);
-        //    return Accepted(complaint);
-        //}
+        [HttpDelete("{id}")]
+        public ActionResult DeleteSample(int id)
+        {
+            var sample = _connections.DeleteSample(id);
+            return Accepted(sample);
+        }
     }
 }

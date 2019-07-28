@@ -72,21 +72,21 @@ namespace ArboPop.Connections
             }
         }
 
-        //public complaint DeleteComplaint(int id)
-        //{
-        //    using (var connection = new SqlConnection(ConnectionString))
-        //    {
-        //        var queryString = @"DELETE 
-        //                            FROM [Activity]
-        //                            Output deleted.*
-        //                            WHERE id = @id";
-        //        var order = connection.QueryFirstOrDefault<complaint>(queryString, new { id });
-        //        if (order != null)
-        //        {
-        //            return order;
-        //        }
-        //        throw new Exception("Unable to delete that submission");
-        //    }
-        //}
+        public Sample DeleteSample(int id)
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                var queryString = @"DELETE 
+                                    FROM[Sample]
+                                    Output deleted.*
+                                    WHERE id = @id";
+                var sample = connection.QueryFirstOrDefault<Sample>(queryString, new { id });
+                if (sample != null)
+                {
+                    return sample;
+                }
+                throw new Exception("Unable to delete that sample");
+            }
+        }
     }
 }
