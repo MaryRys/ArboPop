@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using ArboPop.Connections;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ArboPop.Models;
+using ArboPop.Models.Mosquito;
 
 namespace ArboPop.Controllers
 {
@@ -38,30 +40,21 @@ namespace ArboPop.Controllers
             return Ok(mosquito);
         }
 
-        //    // use endpoint https://localhost:#####/api/Complaints/user/{userId} in url
-        //    [HttpGet("user/{userId}")]
-        //    public ActionResult GetAllUserOrders(int userId)
-        //    {
-        //        var complaints = _connections.getAllUserComplaints(userId);
+        [HttpPost]
+        public ActionResult AddMosquito(AddNewMosquito newMosquito)
+        {
+            var createdMosquito = _connections.AddNewMosquito(newMosquito);
 
-        //        return Ok(complaints);
-        //    }
+            return Accepted(createdMosquito);
 
-        //    [HttpPost]
-        //    public ActionResult AddComplaint(NewComplaint newComplaint)
-        //    {
-        //        var createdComplaint = _connections.AddNewComplaint(newComplaint);
-
-        //        return Accepted(createdComplaint);
-
-        //    }
+        }
 
         //    // pass id in body
-        //    [HttpDelete("{id}")]
-        //    public ActionResult DeleteComplaint(int id)
-        //    {
-        //        var complaint = _connections.DeleteComplaint(id);
-        //        return Accepted(complaint);
-        //    }
+        [HttpDelete("{id}")]
+        public ActionResult DeleteMosquito(int id)
+        {
+            var mosquito = _connections.DeleteMosquito(id);
+            return Accepted(mosquito);
+        }
     }
 }
