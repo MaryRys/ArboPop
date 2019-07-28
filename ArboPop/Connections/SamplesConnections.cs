@@ -43,17 +43,17 @@ namespace ArboPop.Connections
             }
         }
 
-        //public IEnumerable<complaint> getAllUserComplaints(int userId)
-        //{
-        //    using (var connection = new SqlConnection(ConnectionString))
-        //    {
-        //        var queryString = @"SELECT *
-        //                        FROM [Activity]
-        //                        WHERE userId = @userId";
-        //        var products = connection.Query<complaint>(queryString, new { userId }).ToList();
-        //        return products;
-        //    }
-        //}
+        public IEnumerable<Sample> getAllUserSamples(int userId)
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                var queryString = @"SELECT *
+                                FROM [Sample]
+                                WHERE userId = @userId";
+                var samples = connection.Query<Sample>(queryString, new { userId }).ToList();
+                return samples;
+            }
+        }
 
         //public complaint AddNewComplaint(NewComplaint newComplaint)
         //{

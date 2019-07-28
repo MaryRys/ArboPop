@@ -38,14 +38,14 @@ namespace ArboPop.Controllers
             return Ok(sample);
         }
 
-        //// use endpoint https://localhost:#####/api/Complaints/user/{userId} in url
-        //[HttpGet("user/{userId}")]
-        //public ActionResult GetAllUserOrders(int userId)
-        //{
-        //    var complaints = _connections.getAllUserComplaints(userId);
+        //// use endpoint https://localhost:#####/api/Samples/user/{userId} in url
+        [HttpGet("user/{userId}")]
+        public ActionResult GetAllUserSamples(int userId)
+        {
+            var samples = _connections.getAllUserSamples(userId);
 
-        //    return Ok(complaints);
-        //}
+            return Ok(samples);
+        }
 
         //[HttpPost]
         //public ActionResult AddComplaint(NewComplaint newComplaint)
