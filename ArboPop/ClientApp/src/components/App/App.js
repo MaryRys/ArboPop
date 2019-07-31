@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Route, BrowserRouter, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import Home from '../Home/Home';
 
 const PublicRoute = ({ component: Component, loginStatus, ...rest }) => {
