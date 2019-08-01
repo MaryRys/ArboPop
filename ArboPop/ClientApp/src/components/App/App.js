@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import MyNavbar from '../MyNavbar/MyNavbar'
 import Home from '../Home/Home';
 
 const PublicRoute = ({ component: Component, loginStatus, ...rest }) => {
@@ -47,6 +48,7 @@ class App extends React.Component {
   render(){
     return (
       <BrowserRouter>
+      <MyNavbar />
       <React.Fragment>
         <Switch>
             <PrivateRoute path='/' exact component={Home} loginStatus={this.state.loginStatus}/>
