@@ -1,16 +1,19 @@
 import React from 'react';
 import { Button } from 'reactstrap';
+import 'firebase/auth';
+import firebase from 'firebase/app';
 import './Home.scss';
 
 class Home extends React.Component {
-    render(){
-        return(
-        <div className="Home">
-            <h1>You are Home</h1>
-            <Button color="primary">primary</Button>
-
-        </div>
-        )
+    logOut = () => {
+        firebase.auth().signOut();
+    }
+    
+    render() {
+    return(<div>
+        You're home
+        <Button onClick={this.logOut}>Log out</Button>
+    </div>);
     }
 }
 

@@ -1,7 +1,16 @@
 import React from "react";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { 
+  BrowserRouter, Route, Switch, Redirect 
+} from "react-router-dom";
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import connection from '../../Data/userData/connection';
 import MyNavbar from '../MyNavbar/MyNavbar'
 import Home from '../Home/Home';
+import Register from '../Register/Register';
+import Auth from '../Auth/Auth';
+
+connection();
 
 const PublicRoute = ({ component: Component, loginStatus, ...rest }) => {
   const routeChecker = props => (loginStatus === false
@@ -21,24 +30,24 @@ class App extends React.Component {
 
   state = {
     loginStatus: true,
-    // pendingUser: true,
+    pendingUser: false,
   }
   
   componentDidMount() {
-  //   connection();
-  //   this.removeListener = firebase.auth().onAuthStateChanged((user) => {
-  //     if (user) {
-  //       this.setState({
-  //         loginStatus: true,
-  //         pendingUser: false,
-  //       });
-  //     } else {
-  //       this.setState({
-  //         loginStatus: false,
-  //         pendingUser: false,
-  //       });
-  //     }
-  //   });
+    connection();
+    this.removeListener = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({
+          loginStatus: true,
+          pendingUser: false,
+        });
+      } else {
+        this.setState({
+          loginStatus: false,
+          pendingUser: false,
+        });
+      }
+    });
   }
   
   componentWillUnmount() {
@@ -51,9 +60,9 @@ class App extends React.Component {
       <MyNavbar />
       <React.Fragment>
         <Switch>
-            <PrivateRoute path='/' exact component={Home} loginStatus={this.state.loginStatus}/>
+            <PublicRoute path='/login' exact component={Auth} loginStatus={this.state.loginStatus}/>
+            <PublicRoute path='/register' exact component={Register} loginStatus={this.state.loginStatus}/>
             <PrivateRoute path='/home' exact component={Home} loginStatus={this.state.loginStatus}/>
-            <PublicRoute path='/' exact component={Home} loginStatus={this.state.loginStatus}/>
         </Switch>
       </React.Fragment>
       </BrowserRouter>
