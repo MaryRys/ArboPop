@@ -3,8 +3,8 @@ import {Button} from 'reactstrap';
 import authRequests from '../../Data/authData/authRequests';
 
 const defaultUser = {
-    email: 'rys.mary@gmail.com',
-    password: 'Password1',
+    email: 'email@example.com',
+    password: '*******',
   };
 
 class Auth extends React.Component{
@@ -27,11 +27,12 @@ class Auth extends React.Component{
           const { newUser } = this.state;
           e.preventDefault();
           authRequests.loginUser(newUser).then(() => {
-            // this.props.isAuthenticated();
+            this.props.isAuthenticated();
           }).catch(err => console.error('error in auth', err));
         }
 
     render(){
+        const { newUser } = this.state;
         return (
             <div className='Auth'>
               <div className="col-4 offset-4">
@@ -43,9 +44,8 @@ class Auth extends React.Component{
                       className="form-control"
                       id="email"
                       aria-describedby="titleHelp"
-                      placeholder="johnsmith@gmail.com"
-                    //   value={newUser.email}
-                    //   onChange={this.emailChange}
+                      value={newUser.email}
+                      onChange={this.emailChange}
                     />
                   </div>
                   <div className="form-group">
@@ -55,11 +55,10 @@ class Auth extends React.Component{
                       className="form-control"
                       id="password"
                       aria-describedby="passwordHelp"
-                      placeholder=""
-                    //   value={newUser.password}
+                      value={newUser.password}
                       onChange={this.passwordChange}
                     />
-                    <Button>Log in</Button>
+                    <Button onClick={this.loginUser}>Log in</Button>
                   </div>
                 </form>
                </div>

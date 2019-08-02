@@ -9,6 +9,8 @@ import MyNavbar from '../MyNavbar/MyNavbar'
 import Home from '../Home/Home';
 import Register from '../Register/Register';
 import Auth from '../Auth/Auth';
+import authRequests from '../../Data/authData/authRequests';
+import userRequests from '../../Data/userData/userRequests';
 
 connection();
 
@@ -30,7 +32,16 @@ class App extends React.Component {
 
   state = {
     loginStatus: true,
-    pendingUser: false,
+    user: [],
+  }
+
+  getUser() {
+    const uid = authRequests.getCurrentUid();
+    userRequests.getSingleUser(uid)
+      .then((user) => {
+        this.setState({ user });
+      })
+      .catch(err => console.error('error getting User, err'));
   }
   
   componentDidMount() {
@@ -38,13 +49,11 @@ class App extends React.Component {
     this.removeListener = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({
-          loginStatus: true,
-          pendingUser: false,
+          loginStatus: true
         });
       } else {
         this.setState({
           loginStatus: false,
-          pendingUser: false,
         });
       }
     });
@@ -54,13 +63,17 @@ class App extends React.Component {
     this.removeListener();
   }
 
+  isAuthenticated = (username) => {
+    this.setState({ loginStatus: true });
+  }
+
   render(){
     return (
       <BrowserRouter>
       <MyNavbar />
       <React.Fragment>
         <Switch>
-            <PublicRoute path='/login' exact component={Auth} loginStatus={this.state.loginStatus}/>
+            <PublicRoute path='/login' exact component={Auth} loginStatus={this.state.loginStatus} isAuthenticated={this.isAuthenticated}/>
             <PublicRoute path='/register' exact component={Register} loginStatus={this.state.loginStatus}/>
             <PrivateRoute path='/home' exact component={Home} loginStatus={this.state.loginStatus}/>
         </Switch>
