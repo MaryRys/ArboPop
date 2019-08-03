@@ -7,6 +7,7 @@ import {
   Nav,
   NavItem,
   NavLink } from 'reactstrap';
+import { NavLink as RRNavLink } from 'react-router-dom';
 
 class MyNavbar extends React.Component {
   state = {
@@ -34,7 +35,7 @@ class MyNavbar extends React.Component {
                 <NavLink href="/sample">Submit Sample</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/mosquitoes">Mosquitopedia</NavLink>
+                <NavLink tag={RRNavLink} to="/mosquitoes">Mosquitopedia</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
