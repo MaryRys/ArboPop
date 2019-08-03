@@ -9,23 +9,38 @@ import MyNavbar from '../MyNavbar/MyNavbar'
 import Home from '../Home/Home';
 import Register from '../Register/Register';
 import Auth from '../Auth/Auth';
+import Mosquito from '../Mosquitopedia/Mosquito';
 import authRequests from '../../Data/authData/authRequests';
 import userRequests from '../../Data/userData/userRequests';
 
 connection();
 
+// const PublicRoute = ({ component: Component, loginStatus, currentPath, currentUser, ...rest }) => {
+//   const routeChecker = props => (loginStatus === false
+//     ? (<Component { ...props } currentPath={currentPath} currentUser={currentUser}/>)
+//     : (<Redirect to={{ pathname: currentPath, state: { from: props.location } } } />));
+//   return <Route {...rest} render={props => routeChecker(props)} />;
+//   };
+
+// const PrivateRoute = ({ component: Component, loginStatus, ...rest }) => {
+//   const routeChecker = props => (loginStatus === true
+//     ? (<Component { ...props } />)
+//     : (<Redirect to={{ pathname: '/login', state: { from: props.location } } } />));
+//   return <Route {...rest} render={props => routeChecker(props)} />;
+// };
+
 const PublicRoute = ({ component: Component, loginStatus, ...rest }) => {
   const routeChecker = props => (loginStatus === false
-    ? (<Component { ...props }/>)
+    ? (<Component { ...props } {...rest}/>)
     : (<Redirect to={{ pathname: '/home', state: { from: props.location } } } />));
-  return <Route {...rest} render={props => routeChecker(props)} />;
-};
+  return <Route render={props => routeChecker(props)} />;
+  };
 
 const PrivateRoute = ({ component: Component, loginStatus, ...rest }) => {
   const routeChecker = props => (loginStatus === true
-    ? (<Component { ...props } />)
+    ? (<Component { ...props } {...rest} />)
     : (<Redirect to={{ pathname: '/login', state: { from: props.location } } } />));
-  return <Route {...rest} render={props => routeChecker(props)} />;
+  return <Route render={props => routeChecker(props)} />;
 };
 
 class App extends React.Component {
@@ -33,6 +48,7 @@ class App extends React.Component {
   state = {
     loginStatus: true,
     user: [],
+    currentPath: window.location.pathname 
   }
 
   getUser() {
@@ -73,8 +89,9 @@ class App extends React.Component {
       <MyNavbar />
       <React.Fragment>
         <Switch>
-            <PublicRoute path='/login' exact component={Auth} loginStatus={this.state.loginStatus} isAuthenticated={this.isAuthenticated}/>
-            <PublicRoute path='/register' exact component={Register} loginStatus={this.state.loginStatus}/>
+            <PublicRoute path='/login' exact component={Auth} currentPath={this.state.currentPath} loginStatus={this.state.loginStatus} isAuthenticated={this.isAuthenticated}/>
+            <PublicRoute path='/register' exact component={Register} currentPath={this.state.currentPath} loginStatus={this.state.loginStatus}/>
+            <PrivateRoute path='/mosquitoes' component={Mosquito} currentPath={this.state.currentPath} loginStatus={true}/>
             <PrivateRoute path='/home' exact component={Home} loginStatus={this.state.loginStatus}/>
         </Switch>
       </React.Fragment>
