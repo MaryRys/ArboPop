@@ -13,7 +13,7 @@ class AddComplaint extends React.Component{
 
     addComplaintEvent = (e) => {
         e.preventDefault();
-        const addComplaint = this.props;
+        const { addComplaint } = this.props;
         const myComplaint = {   biteInput: this.state.biteInput, 
                                 zipInput: this.state.zipInput, 
                                 timeInput: this.state.timeInput, 
@@ -60,7 +60,7 @@ class AddComplaint extends React.Component{
                             Upload an image or other file to give more information on the problem (optional).
                         </FormText>
                         </FormGroup>
-                        <Button onSubmit={this.addComplaintEvent}>Submit</Button>
+                        <Button onClick={this.addComplaintEvent}>Submit</Button>
                     </Form>
                 </div>
             </div>
