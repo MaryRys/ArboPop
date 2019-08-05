@@ -9,8 +9,8 @@ const getAllComplaints = () => new Promise((Resolve, Reject) => {
     .catch((err) => Reject(err));
 });
 
-const addComplaint = (complaintInfo) => new Promise((Resolve, Reject) => {
-  axios.post(`${baseUrl}/Complaints`, complaintInfo)
+const addComplaint = (newComplaint) => new Promise((Resolve, Reject) => {
+  axios.post(`${baseUrl}/Complaints`, newComplaint)
     .then((res) => Resolve(res))
     .catch((err) => Reject(err));
 });

@@ -13,13 +13,13 @@ class AddComplaint extends React.Component{
 
     addComplaintEvent = (e) => {
         e.preventDefault();
-        const addNewComplaint = this.props;
+        const addComplaint = this.props;
         const myComplaint = {   biteInput: this.state.biteInput, 
                                 zipInput: this.state.zipInput, 
                                 timeInput: this.state.timeInput, 
                                 notesInput: this.state.notesInput, 
                                 fileInput: this.state.fileInput }
-        addNewComplaint(myComplaint);
+        addComplaint(myComplaint);
     }
 
     render(){
