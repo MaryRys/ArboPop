@@ -18,7 +18,15 @@ class Complaint extends React.Component{
         .catch((err) => console.error(err));
     }
 
-    componentDidMount(){
+    addNewComplaint = () => {
+        complaintsData.addComplaint()
+        .then(() => {
+            this.PopulateComplaints();
+        })
+        .catch((err) => console.error(err));
+    }
+
+    componentDidMount() {
         this.populateComplaints();
     }
 
@@ -32,7 +40,9 @@ class Complaint extends React.Component{
 
             return(
             <div>
-                <AddComplaint />
+                <AddComplaint 
+                addComplaint={this.addNewComplaint}
+                />
                 <div className="complaintsContainer">
                     <div className="container">
                     <h1>All Reports</h1>

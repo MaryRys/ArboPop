@@ -9,14 +9,13 @@ const getAllComplaints = () => new Promise((Resolve, Reject) => {
     .catch((err) => Reject(err));
 });
 
-// const deletePaymentType = paymentId => axios.delete(`${baseUrl}/payment/${paymentId}`)
-
-// const addPayment = (paymentInfo) => new Promise((Resolve, Reject) => {
-//   axios.post(`${baseUrl}/payment`, paymentInfo)
-//     .then((res) => Resolve(res))
-//     .catch((err) => Reject(err));
-// });
+const addComplaint = (complaintInfo) => new Promise((Resolve, Reject) => {
+  axios.post(`${baseUrl}/Complaints`, complaintInfo)
+    .then((res) => Resolve(res))
+    .catch((err) => Reject(err));
+});
 
 export default { 
-  getAllComplaints
+  getAllComplaints,
+  addComplaint
 }

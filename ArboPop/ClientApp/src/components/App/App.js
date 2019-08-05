@@ -80,7 +80,7 @@ class App extends React.Component {
             <PublicRoute path='/register' exact component={Register} currentPath={this.state.currentPath} loginStatus={this.state.loginStatus}/>
             <PrivateRoute path='/mosquitoes' component={Mosquito} currentPath={this.state.currentPath} loginStatus={true}/>
             <PrivateRoute path='/home' exact component={Home} loginStatus={this.state.loginStatus}/>
-            <PrivateRoute path='/reporting' component={Complaint} loginStatus={this.state.loginStatus}/>
+            <PrivateRoute path='/complaints' component={Complaint} loginStatus={this.state.loginStatus}/>
         </Switch>
       </React.Fragment>
       </BrowserRouter>

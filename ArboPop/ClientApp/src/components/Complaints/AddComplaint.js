@@ -4,12 +4,22 @@ import './AddComplaint.scss';
 
 class AddComplaint extends React.Component{
     state = {
-        creationDate: '',
         biteInput: '',
         zipInput: '',
         timeInput: '',
         notesInput: '',
         fileInput: '',
+    }
+
+    addComplaintEvent = (e) => {
+        e.preventDefault();
+        const addNewComplaint = this.props;
+        const myComplaint = {   biteInput: this.state.biteInput, 
+                                zipInput: this.state.zipInput, 
+                                timeInput: this.state.timeInput, 
+                                notesInput: this.state.notesInput, 
+                                fileInput: this.state.fileInput }
+        addNewComplaint(myComplaint);
     }
 
     render(){
@@ -50,7 +60,7 @@ class AddComplaint extends React.Component{
                             Upload an image or other file to give more information on the problem (optional).
                         </FormText>
                         </FormGroup>
-                        <Button>Submit</Button>
+                        <Button onSubmit={this.addComplaintEvent}>Submit</Button>
                     </Form>
                 </div>
             </div>

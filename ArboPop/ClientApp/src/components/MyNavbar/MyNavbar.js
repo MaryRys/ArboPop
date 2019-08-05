@@ -29,7 +29,7 @@ class MyNavbar extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/reporting/">Reporting</NavLink>
+                <NavLink href="/complaints">Reporting</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="/sample">Submit Sample</NavLink>
