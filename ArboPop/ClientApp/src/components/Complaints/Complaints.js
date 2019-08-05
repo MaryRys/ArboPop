@@ -21,7 +21,7 @@ class Complaint extends React.Component{
     addNewComplaint = (newComplaint) => {
         complaintsData.addComplaint(newComplaint)
         .then(() => {
-            this.PopulateComplaints();
+            this.populateComplaints();
         })
         .catch((err) => console.error(err));
     }
