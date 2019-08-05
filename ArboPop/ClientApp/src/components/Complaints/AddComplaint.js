@@ -4,20 +4,20 @@ import './AddComplaint.scss';
 
 class AddComplaint extends React.Component{
     state = {
-        biteInput: '',
-        zipInput: '',
-        timeInput: '',
-        notesInput: '',
+        bitingSource: '',
+        zipcode: '',
+        timeOfDay: '',
+        addtlNotes: '',
         fileInput: '',
     }
 
     addComplaintEvent = (e) => {
         e.preventDefault();
         const { addComplaint } = this.props;
-        const myComplaint = {   biteInput: this.state.biteInput, 
-                                zipInput: this.state.zipInput, 
-                                timeInput: this.state.timeInput, 
-                                notesInput: this.state.notesInput, 
+        const myComplaint = {   bitingSource: this.state.bitingSource, 
+                                zipcode: this.state.zipcode, 
+                                timeOfDay: this.state.timeOfDay, 
+                                addtlNotes: this.state.addtlNotes, 
                                 fileInput: this.state.fileInput }
         addComplaint(myComplaint);
     }
@@ -34,15 +34,15 @@ class AddComplaint extends React.Component{
                     <Form>
                         <FormGroup>
                         <Label>Biting Source</Label>
-                        <Input  id="biteInput" placeholder="Watering hole" onChange={getValue}/>
+                        <Input  id="bitingSource" placeholder="Watering hole" onChange={getValue}/>
                         </FormGroup>
                         <FormGroup>
                         <Label>Zipcode</Label>
-                        <Input id="zipInput" placeholder="37200" onChange={getValue}/>
+                        <Input id="zipcode" placeholder="37200" onChange={getValue}/>
                         </FormGroup>
                         <FormGroup>
                         <Label for="exampleSelect">Time of Day</Label>
-                        <Input type="select" name="timeInput" id="timeInput" onChange={getValue}>
+                        <Input type="select" name="timeInput" id="timeOfDay" onChange={getValue}>
                             <option>Early morning</option>
                             <option>Afternoon</option>
                             <option>Evening</option>
@@ -51,7 +51,7 @@ class AddComplaint extends React.Component{
                         </FormGroup>
                         <FormGroup>
                         <Label for="exampleText">Additional Notes</Label>
-                        <Input type="textarea" name="notesInput" id="notesInput" onChange={getValue}/>
+                        <Input type="textarea" name="notesInput" id="addtlNotes" onChange={getValue}/>
                         </FormGroup>
                         <FormGroup>
                         <Label for="exampleFile">File</Label>
