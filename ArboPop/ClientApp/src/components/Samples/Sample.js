@@ -1,6 +1,8 @@
 import React from 'react';
 import samplesData from '../../Data/samplesData/samplesData';
 import SingleSample from './singleSample';
+import AddSample from './AddSample';
+import './Sample.scss';
 
 class Sample extends React.Component{
     state = {
@@ -12,6 +14,14 @@ class Sample extends React.Component{
         .then((res) => {
             var samples = res.data;
             this.setState({ samples });
+        })
+        .catch((err) => console.error(err));
+    }
+
+    addNewSample = (newSample) => {
+        samplesData.addSample(newSample)
+        .then(() => {
+            this.populateSamples();
         })
         .catch((err) => console.error(err));
     }
@@ -29,8 +39,16 @@ class Sample extends React.Component{
 
         return(
             <div className="samplesContainer">
-                <h1>Samples</h1>
-                {sampleComponents}
+                <div className="row">
+                    <AddSample 
+                    addSample={this.addNewSample}/>
+                    <div>
+                        <h1>Samples</h1>
+                        <div className="allSamples">
+                        {sampleComponents}
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }

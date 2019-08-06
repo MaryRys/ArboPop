@@ -10,7 +10,14 @@ const getAllSamples = () => new Promise((Resolve, Reject) => {
     .catch((err) => Reject(err));
 });
 
+const addSample = (newSample) => new Promise((Resolve, Reject) => {
+  axios.post(`${baseUrl}/Samples`, newSample)
+    .then((res) => Resolve(res))
+    .catch((err) => Reject(err));
+});
+
 
 export default {
-    getAllSamples
+    getAllSamples,
+    addSample
 }

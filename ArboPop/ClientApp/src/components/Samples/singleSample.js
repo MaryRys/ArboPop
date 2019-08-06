@@ -17,7 +17,6 @@ class singleSample extends React.Component{
                     <CardText>Number of species: {sample.numOfSpecies}</CardText>
                     <CardText>Trap type: {sample.trapType}</CardText>
                     <CardText>Lure: {sample.lure}</CardText>
-                    {/* <Button>Button</Button> */}
                     </CardBody>
                 </Card>
             </div>
