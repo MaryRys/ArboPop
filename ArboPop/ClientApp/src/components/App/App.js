@@ -11,6 +11,7 @@ import Register from '../Register/Register';
 import Auth from '../Auth/Auth';
 import Mosquito from '../Mosquitopedia/Mosquito';
 import Complaint from '../Complaints/Complaints';
+import Sample from '../Samples/Sample';
 import authRequests from '../../Data/authData/authRequests';
 import userRequests from '../../Data/userData/userRequests';
 
@@ -81,6 +82,7 @@ class App extends React.Component {
             <PrivateRoute path='/mosquitoes' component={Mosquito} currentPath={this.state.currentPath} loginStatus={true}/>
             <PrivateRoute path='/home' exact component={Home} loginStatus={this.state.loginStatus}/>
             <PrivateRoute path='/complaints' component={Complaint} loginStatus={this.state.loginStatus}/>
+            <PrivateRoute path='/sample' component={Sample} loginStatus={this.state.loginStatus} />
         </Switch>
       </React.Fragment>
       </BrowserRouter>
